@@ -98,9 +98,7 @@ class AdminController extends Controller
     }
 
 
-    public function categoryPage(){
-        return Inertia::render('Admin/CategoryPage');
-    }
+
 
     /**
      * Show the form for creating a new resource.

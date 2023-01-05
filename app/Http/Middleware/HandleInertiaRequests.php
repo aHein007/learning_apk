@@ -49,6 +49,10 @@ class HandleInertiaRequests extends Middleware
                 'successMessage'=> fn() =>$request->session()->get('passwordUpdateSuccess'),
                 'failMessage' => fn() =>$request->session()->get("wrong"),
                 'notSameMessage' => fn() =>$request->session()->get("notSame"),
+
+
+                //this is for category message!
+                'categoryCreateSuccess'=>fn ()=> $request->session()->get('createSuccess'),
             ]
         ]);
     }

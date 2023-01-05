@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -30,19 +31,27 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::controller(AdminController::class)->group(function(){
-Route::get("/adminDashBoard",'index')->name("admin#index");
+//this is for admin profile controller
+Route::middleware('auth')->group(function(){
+Route::get("/adminDashBoard",[AdminController::class,'index'])->name("admin#index");
 
 //this is admin page
-Route::get("/myProfilePage","myProfilePage")->name('admin#myProfilePage');
-Route::get("/categoryPage","categoryPage")->name("admin#categoryPage");
-
+Route::get("/myProfilePage",[AdminController::class,'myProfilePage'])->name('admin#myProfilePage');
 
 //this is password page
-Route::get("/passwordPage/{id}","passwordPage")->name("admin#passwordPage");
-Route::post("/updateProfilePassword/{id}","updatePassword")->name(("admin#updatePassword"));
+Route::get("/passwordPage/{id}",[AdminController::class,"passwordPage"])->name("admin#passwordPage");
+Route::post("/updateProfilePassword/{id}",[AdminController::class,"updatePassword"])->name(("admin#updatePassword"));
+
+//this is category page
+Route::get("/categoryPage",[CategoryController::class,"index"])->name("admin#categoryPage");
+Route::get("/categoryAddPage",[CategoryController::class,"create"])->name("admin#categoryAddPage");
+Route::post("/categoryAdd",[CategoryController::class,"store"])->name("admin#categoryAdd");
 });
+
+
+
+
+
 
 
 
