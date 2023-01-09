@@ -72,7 +72,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $updateData =Category::where('id',$id)->first();
+
+        return Inertia::render('Admin/CategoryUpdate',[
+            'categoryData' =>$updateData
+        ]);
     }
 
     /**
@@ -93,9 +97,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $id)
     {
-        //
+        $id->delete();
+
+        return back()->with('deleteCategory','Category items have been delete!');
+
     }
 
 

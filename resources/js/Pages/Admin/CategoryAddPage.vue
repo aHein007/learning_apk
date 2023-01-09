@@ -87,7 +87,7 @@ export default {
 
   methods:{
     submit(){
-        this.$inertia.post(`/categoryAdd`,this.createForm);
+        this.$inertia.post(`/category/add`,this.createForm);
     }
   }
 

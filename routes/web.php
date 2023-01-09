@@ -44,10 +44,13 @@ Route::post("/updateProfilePassword/{id}",[AdminController::class,"updatePasswor
 
 //this is category page
 Route::get("/categoryPage",[CategoryController::class,"index"])->name("admin#categoryPage");
-Route::get("/categoryAddPage",[CategoryController::class,"create"])->name("admin#categoryAddPage");
-Route::post("/categoryAdd",[CategoryController::class,"store"])->name("admin#categoryAdd");
-});
+Route::get("/category/addPage",[CategoryController::class,"create"])->name("admin#categoryAddPage");
+Route::post("/category/add",[CategoryController::class,"store"])->name("admin#categoryAdd");
+Route::delete("/category/delete/{id}",[CategoryController::class,"destroy"])->name("admin#categoryDelete");
+Route::get("/category/updatePage/{id}",[CategoryController::class,"edit"])->name('admin#categoryUpdatePage');
 
+});
+    
 
 
 

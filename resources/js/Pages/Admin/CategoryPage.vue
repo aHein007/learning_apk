@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">
-              <Link href="/categoryAddPage" class="btn btn-sm btn-outline-dark">Add Category</Link>
+              <Link href="/category/addPage" class="btn btn-sm btn-outline-dark">Add Category</Link>
             </h3>
 
 
@@ -34,12 +34,19 @@
             <div v-if="$page.props.flash.categoryCreateSuccess"  class="alert alert-success p-3 m-3" role="alert">
                         {{$page.props.flash.categoryCreateSuccess}}
             </div>
+
+
+            <div v-if="$page.props.flash.categoryDelete" class="alert alert-danger p-3 m-3" role="alert">
+                       {{ $page.props.flash.categoryDelete }}
+            </div>
+
+
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0">
             <table class="table table-hover text-nowrap text-center">
               <thead>
                 <tr>
-                  <th>Course Category Id</th>
+                  <th> Category Id</th>
                   <th>Course Category Name</th>
                   <th>Course Count</th>
                   <th>Course Feed</th>
@@ -49,14 +56,14 @@
               </thead>
               <tbody v-for="category in categoryData" :key="category.id">
                 <tr>
-                  <td>{{ category.category_id }}</td>
+                  <td>{{ category.id }}</td>
                   <td>{{ category.category_name }} </td>
                   <td>{{ category.course_count }}</td>
                   <td>{{ category.course_feeds }}</td>
                   <td>{{ category.date }}</td>
                   <td>
-                    <button class="btn btn-sm bg-dark text-white mr-2"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></button>
+                    <Link :href="route('admin#categoryUpdatePage',category.id)" class="btn btn-sm bg-dark text-white mr-2"><i class="fas fa-edit"></i></Link>
+                    <Link  @click="deleteCategory(category.id)" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></Link>
                   </td>
                 </tr>
 
@@ -88,6 +95,16 @@ export default {
   props:{
     categoryData:Array
   },
+
+
+  methods:{
+    deleteCategory(id){
+        this.$inertia.delete(`/category/delete/${id}`);
+
+    }
+  }
+
+
 
 }
 </script>
