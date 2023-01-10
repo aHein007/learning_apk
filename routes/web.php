@@ -48,9 +48,9 @@ Route::get("/category/addPage",[CategoryController::class,"create"])->name("admi
 Route::post("/category/add",[CategoryController::class,"store"])->name("admin#categoryAdd");
 Route::delete("/category/delete/{id}",[CategoryController::class,"destroy"])->name("admin#categoryDelete");
 Route::get("/category/updatePage/{id}",[CategoryController::class,"edit"])->name('admin#categoryUpdatePage');
-
+Route::post("/category/update/{id}",[CategoryController::class,"update"])->name('admin#categoryUpdate');
 });
-    
+
 
 
 

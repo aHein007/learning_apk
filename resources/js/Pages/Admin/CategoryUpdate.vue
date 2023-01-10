@@ -91,7 +91,7 @@ export default {
 
   methods: {
     submit(){
-
+        this.$inertia.post(`/category/update/${this.categoryData.id}`,this.updateForm);
     }
   },
 

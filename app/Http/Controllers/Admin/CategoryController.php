@@ -88,7 +88,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $data =  $request->all();
+
+      $updateData =$this->updateCategory($request);
+
+     Category::where('id',$id)->update($updateData);
+
+     return redirect()->route('admin#categoryPage')->with('updateCategory','Your Category updated successfully!');
+
     }
 
     /**
@@ -116,5 +123,15 @@ class CategoryController extends Controller
 
        return $categoryData;
 
+    }
+
+
+    public function updateCategory($request){
+        return [
+            'category_name'=>$request->updateName,
+            'course_count' =>$request->updateCount,
+            'course_feeds' =>$request->updateFeeds,
+            'date' =>$request->updateDate
+        ];
     }
 }

@@ -40,6 +40,10 @@
                        {{ $page.props.flash.categoryDelete }}
             </div>
 
+            <div v-if="$page.props.flash.categoryUpdate" class="alert alert-info p-3 m-3" role="alert">
+                        {{ $page.props.flash.categoryUpdate }}
+            </div>
+
 
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0">

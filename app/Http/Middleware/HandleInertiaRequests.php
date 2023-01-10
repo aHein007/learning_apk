@@ -54,6 +54,7 @@ class HandleInertiaRequests extends Middleware
                 //this is for category message!
                 'categoryCreateSuccess'=>fn ()=> $request->session()->get('createSuccess'),
                 'categoryDelete'=>fn () => $request->session()->get('deleteCategory'),
+                'categoryUpdate' =>fn ()=> $request->session()->get('updateCategory')
             ]
         ]);
     }

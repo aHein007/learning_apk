@@ -41,7 +41,7 @@
 
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn bg-dark text-white">Update</button>
+                            <button type="submit" class="btn bg-dark text-white">Change</button>
                           </div>
                         </div>
 
