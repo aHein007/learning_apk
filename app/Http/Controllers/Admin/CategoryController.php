@@ -59,10 +59,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($request)
     {
-        //
+
+
+     $searchData =Category::Search($request)
+                                ->get();
+
+
+        return Inertia::render('Admin/CategoryPage',
+        [
+            'categoryData' =>$searchData,
+
+        ]);
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

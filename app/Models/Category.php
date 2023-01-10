@@ -14,4 +14,15 @@ class Category extends Model
         'course_feeds',
         'date'
     ];
+
+
+    public function scopeSearch($query,$data)
+    {
+        $query->when($data ?? "" ,function($query,$search)
+        {
+            $query->orwhere('category_name','like',"%".$search."%")
+                  ->orwhere('course_feeds','like',"%".$search."%");
+
+        });
+    }
 }

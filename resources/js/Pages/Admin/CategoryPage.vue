@@ -20,15 +20,18 @@
 
 
             <div class="card-tools m-2">
-              <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <form @submit.prevent="submit">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" v-model="searchCourse" class="form-control float-right" placeholder="Search">
 
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-default">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
+                        <div class="input-group-append">
+                        <button  type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        </div>
+                    </div>
+              </form>
+              {{ errors.request }}
             </div>
           </div>
             <div v-if="$page.props.flash.categoryCreateSuccess"  class="alert alert-success p-3 m-3" role="alert">
@@ -58,6 +61,7 @@
                   <th></th>
                 </tr>
               </thead>
+
               <tbody v-for="category in categoryData" :key="category.id">
                 <tr>
                   <td>{{ category.id }}</td>
@@ -97,13 +101,34 @@ export default {
   components: { AdminLayout ,Link },
 
   props:{
-    categoryData:Array
+    categoryData:Array,
+    errors:Object,
+
+  },
+
+
+
+  data(){
+    return {
+        searchCourse:""
+    }
   },
 
 
   methods:{
     deleteCategory(id){
         this.$inertia.delete(`/category/delete/${id}`);
+
+    },
+
+    submit(){
+         if(this.searchCourse){
+            this.$inertia.get(`/category/search/${this.searchCourse}`);
+         }else{
+            this.$inertia.get(`/categoryPage`);
+         }
+
+
 
     }
   }
