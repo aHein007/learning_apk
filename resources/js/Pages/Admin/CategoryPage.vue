@@ -49,7 +49,7 @@
 
 
           <!-- /.card-header -->
-          <div class="card-body table-responsive p-0">
+          <div class="card-body table-responsive p-0" >
             <table class="table table-hover text-nowrap text-center">
               <thead>
                 <tr>
@@ -62,36 +62,61 @@
                 </tr>
               </thead>
 
-              <tbody v-for="category in categoryData" :key="category.id">
-                <tr>
-                  <td>{{ category.id }}</td>
-                  <td>{{ category.category_name }} </td>
-                  <td>{{ category.course_count }}</td>
-                  <td>{{ category.course_feeds }}</td>
-                  <td>{{ category.date }}</td>
-                  <td>
-                    <Link :href="route('admin#categoryUpdatePage',category.id)" class="btn btn-sm bg-dark text-white mr-2"><i class="fas fa-edit"></i></Link>
-                    <Link  @click="deleteCategory(category.id)" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></Link>
-                  </td>
-                </tr>
+
+                <tbody v-for="category in categoryData.data" :key="category.id" >
+                    <tr >
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.category_name }} </td>
+                        <td>{{ category.course_count }}</td>
+                        <td>{{ category.course_feeds }}</td>
+                        <td>{{ category.date }}</td>
+
+                        <td>
+                            <Link :href="route('admin#categoryUpdatePage',category.id)" class="btn btn-sm bg-dark text-white mr-2"><i class="fas fa-edit"></i></Link>
+                            <Link  @click="deleteCategory(category.id)" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></Link>
+                        </td>
+                    </tr>
 
 
 
 
+                </tbody>
 
-              </tbody>
+
+
+                <tbody v-if="status == 0">
+                    <tr>
+                        <td class="text-center h5 text-muted" colspan="7">Search data not found</td>
+                    </tr>
+                </tbody>
+
+
             </table>
+           <div class="">
+
+
+
+           </div>
           </div>
           <!-- /.card-body -->
+
         </div>
         <!-- /.card -->
+        <nav aria-label="" class="d-flex m-2  justify-end">
+                <ul class="pagination " v-for="(category,index) in categoryData.links" :key="index">
+                    <li  :class="{disabled : category.url == null,}" class="page-item"><Link :class="[category.active ? 'bg-primary' : 'text-black']" class="page-link m-1 " :href="category.url"  v-html="category.label"></Link></li>
+
+                </ul>
+            </nav>
       </div>
     </div>
 
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+
 </div>
+
 </template>
 
 <script>
@@ -101,8 +126,9 @@ export default {
   components: { AdminLayout ,Link },
 
   props:{
-    categoryData:Array,
+    categoryData:Object,
     errors:Object,
+    status:Number,
 
   },
 

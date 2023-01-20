@@ -33,6 +33,7 @@ Route::get('/dashboard', function () {
 
 //this is for admin profile controller
 Route::middleware('auth')->group(function(){
+Route::redirect("/dashboard","/myProfilePage");
 Route::get("/adminDashBoard",[AdminController::class,'index'])->name("admin#index");
 
 //this is admin page
