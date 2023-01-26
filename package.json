@@ -20,6 +20,7 @@
         "vue": "^3.2.36"
     },
     "dependencies": {
+        "moment": "^2.29.4",
         "vue-loader": "^17.0.1",
         "vue-router": "^4.1.6"
     }

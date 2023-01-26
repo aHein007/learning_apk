@@ -17,11 +17,11 @@ class CategoryController extends Controller
     public function index()
     {
 
-       $category_data = Category::paginate(3);
+       $category_data = Category::paginate(8);
 
 
-            // task 2 - make paginate
-            //task 3 -validation ('all')
+
+            //task 8 -validation ('all')
 
 
         return Inertia::render('Admin/CategoryPage',[
@@ -67,7 +67,7 @@ class CategoryController extends Controller
 
      $searchData =Category::Search($request)
                                 ->orderBy('id','desc')
-                                ->paginate(3);
+                                ->paginate(8);
 
         $status =count($searchData) == 0 ? 0 : 1;
 

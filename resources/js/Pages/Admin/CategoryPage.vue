@@ -69,7 +69,7 @@
                         <td>{{ category.category_name }} </td>
                         <td>{{ category.course_count }}</td>
                         <td>{{ category.course_feeds }}</td>
-                        <td>{{ category.date }}</td>
+                        <td>{{category.date}}</td>
 
                         <td>
                             <Link :href="route('admin#categoryUpdatePage',category.id)" class="btn btn-sm bg-dark text-white mr-2"><i class="fas fa-edit"></i></Link>
@@ -119,9 +119,10 @@
 
 </template>
 
-<script>
+<script >
 import AdminLayout from './layout/AdminLayout.vue'
 import { Link } from '@inertiajs/inertia-vue3';
+
 export default {
   components: { AdminLayout ,Link },
 
@@ -136,7 +137,7 @@ export default {
 
   data(){
     return {
-        searchCourse:""
+        searchCourse:"",
     }
   },
 

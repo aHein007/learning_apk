@@ -28,12 +28,12 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //this is for admin profile controller
 Route::middleware('auth')->group(function(){
-Route::redirect("/dashboard","/myProfilePage");
+
 Route::get("/adminDashBoard",[AdminController::class,'index'])->name("admin#index");
 
 //this is admin page
